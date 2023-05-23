@@ -1,4 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Repository;
+using Services;
 
 public static class DependencyInjectionExtensions
 {
@@ -11,10 +13,10 @@ public static class DependencyInjectionExtensions
             options.UseOracle(connectionString));
 
         // Add repository classes
-        //services.AddScoped<Repository, Repository>();
+        services.AddScoped<IBudgetRepository, BudgetRepository>();
 
         // Add services
-        //services.AddScoped<IService, Service>();
+        services.AddScoped<IBudgetService, BudgetService>();
 
     }
 }
