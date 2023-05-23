@@ -11,12 +11,16 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { MonthlyChartComponent } from './components/monthly-chart/monthly-chart.component';
+import { CategoriesChartComponent } from './categories-chart/categories-chart.component';
+import { SourceChartComponent } from './source-chart/source-chart.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BudgetComponent,
-    MonthlyChartComponent
+    MonthlyChartComponent,
+    CategoriesChartComponent,
+    SourceChartComponent
   ],
   imports: [
     BrowserModule,
