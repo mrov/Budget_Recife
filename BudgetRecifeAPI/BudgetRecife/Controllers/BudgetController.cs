@@ -16,18 +16,26 @@ namespace BudgetRecife.Controllers
         }
 
         // GET: Api/Budget/Monthly
-        [HttpGet("/Monthly")]
+        [HttpGet("Monthly")]
         public async Task<ActionResult<List<MontlyValueDTO>>> GetBudgetValuesByMonths()
         {
             return Ok(await _budgetService.GetBudgetValuesByMonths());
         }
 
-        // GET: Api/Budget/Categories
-        [HttpGet("/ByCategories")]
+        // GET: Api/Budget/ByCategories
+        [HttpGet("ByCategories")]
         public async Task<ActionResult<List<EconomicCategoryDTO>>> GetBudgetValuesByCategory()
         {
             // Return a string as the response
             return Ok(await _budgetService.GetBudgetValuesByCategory());
+        }
+
+        // GET: Api/Budget/BySource
+        [HttpGet("BySource")]
+        public async Task<ActionResult<List<ResourceSourceDTO>>> ResourceBySource()
+        {
+            // Return a string as the response
+            return Ok(await _budgetService.GetBudgetValuesBySource());
         }
     }
 }
