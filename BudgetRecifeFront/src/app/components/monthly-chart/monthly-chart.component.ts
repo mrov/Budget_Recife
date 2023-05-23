@@ -6,6 +6,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import * as Highcharts from 'highcharts';
+import { options } from 'src/app/utils/constants/chart';
 
 const monthsMap: { [key: number]: string } = {
   1: 'Jan',
@@ -35,49 +36,12 @@ export class MonthlyChartComponent {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['budgetByMonth']) {
-      // Action to perform when 'data' input property changes
       this.mountChart();
-      // Perform your desired action here
     }
   }
 
   mountChart() {
     if (this.chartContainer) {
-      let options: Highcharts.Options = {
-        chart: {
-          type: 'column',
-        },
-        title: {
-          text: 'Monthly Resource Budget',
-        },
-        subtitle: {
-          text: 'Source: http://dados.recife.pe.gov.br/dataset/despesas-orcamentarias',
-        },
-        xAxis: {},
-        yAxis: {
-          title: {
-            text: 'Valor liquido total',
-          },
-        },
-        tooltip: {
-          headerFormat:
-            '<span style="font-size:10px">{point.key}</span><table>',
-          pointFormat:
-            '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-            '<td style="padding:0"><b>{point.y:.2f}</b></td></tr>',
-          footerFormat: '</table>',
-          shared: true,
-          useHTML: true,
-        },
-        plotOptions: {
-          column: {
-            pointPadding: 0.2,
-            borderWidth: 0,
-          },
-        },
-        series: [],
-      };
-
       let months: string[] = [];
       let totalValuesByMonth: any[] = [];
 
@@ -86,9 +50,12 @@ export class MonthlyChartComponent {
         totalValuesByMonth.push(month.totalMonthValue);
       });
 
-      options = {
+      let formatedOptions: Highcharts.Options = {
         ...options,
         ...{
+          title: {
+            text: 'Monthly Resource Budget',
+          },
           xAxis: { categories: months },
           series: [
             {
@@ -100,7 +67,7 @@ export class MonthlyChartComponent {
         },
       };
 
-      Highcharts.chart(this.chartContainer.nativeElement, options);
+      Highcharts.chart(this.chartContainer.nativeElement, formatedOptions);
     }
   }
 }
