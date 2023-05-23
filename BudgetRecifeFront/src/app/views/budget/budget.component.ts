@@ -27,7 +27,6 @@ export class BudgetComponent {
       (response: any) => {
         // Handle the response data here
         this.budgetByMonth = response;
-        console.log(this.budgetByMonth);
       },
       (error: any) => {
         // Handle any errors
@@ -41,8 +40,6 @@ export class BudgetComponent {
       (response: any) => {
         // Handle the response data here
         this.budgetByCategory = response;
-        console.log(this.budgetByCategory);
-
       },
       (error: any) => {
         // Handle any errors
@@ -56,8 +53,6 @@ export class BudgetComponent {
       (response: any) => {
         // Handle the response data here
         this.budgetBySource = response;
-        console.log(this.budgetBySource);
-
       },
       (error: any) => {
         // Handle any errors

@@ -1,4 +1,10 @@
-import { Component, ElementRef, Input, SimpleChanges, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  Input,
+  SimpleChanges,
+  ViewChild,
+} from '@angular/core';
 import * as Highcharts from 'highcharts';
 
 const monthsMap: { [key: number]: string } = {
@@ -28,71 +34,73 @@ export class MonthlyChartComponent {
   budgetByMonth: [] = [];
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes)
-    if (changes["budgetByMonth"]) {
+    if (changes['budgetByMonth']) {
       // Action to perform when 'data' input property changes
-      this.mountChart()
+      this.mountChart();
       // Perform your desired action here
     }
   }
 
   mountChart() {
-    let options: Highcharts.Options = {
-      chart: {
-        type: 'column',
-      },
-      title: {
-        text: 'Monthly Resource Budget',
-      },
-      subtitle: {
-        text: 'Source: http://dados.recife.pe.gov.br/dataset/despesas-orcamentarias',
-      },
-      xAxis: {},
-      yAxis: {
+    if (this.chartContainer) {
+      let options: Highcharts.Options = {
+        chart: {
+          type: 'column',
+        },
         title: {
-          text: 'Valor liquido total',
+          text: 'Monthly Resource Budget',
         },
-      },
-      tooltip: {
-        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-        pointFormat:
-          '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-          '<td style="padding:0"><b>{point.y:.2f}</b></td></tr>',
-        footerFormat: '</table>',
-        shared: true,
-        useHTML: true,
-      },
-      plotOptions: {
-        column: {
-          pointPadding: 0.2,
-          borderWidth: 0,
+        subtitle: {
+          text: 'Source: http://dados.recife.pe.gov.br/dataset/despesas-orcamentarias',
         },
-      },
-      series: [],
-    };
-
-    let months: string[] = [];
-    let totalValuesByMonth: any[] = [];
-
-    this.budgetByMonth.forEach((month: any) => {
-      months.push(monthsMap[month.month]);
-      totalValuesByMonth.push(month.totalMonthValue);
-    });
-
-    options = {
-      ...options,
-      ...{
-        xAxis: { categories: months },
-        series: [
-          {
-            name: 'Valor Liquido Total',
-            type: 'column',
-            data: totalValuesByMonth,
+        xAxis: {},
+        yAxis: {
+          title: {
+            text: 'Valor liquido total',
           },
-        ],
-      },
-    };
+        },
+        tooltip: {
+          headerFormat:
+            '<span style="font-size:10px">{point.key}</span><table>',
+          pointFormat:
+            '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+            '<td style="padding:0"><b>{point.y:.2f}</b></td></tr>',
+          footerFormat: '</table>',
+          shared: true,
+          useHTML: true,
+        },
+        plotOptions: {
+          column: {
+            pointPadding: 0.2,
+            borderWidth: 0,
+          },
+        },
+        series: [],
+      };
 
-    Highcharts.chart(this.chartContainer.nativeElement, options);
+      let months: string[] = [];
+      let totalValuesByMonth: any[] = [];
+
+      this.budgetByMonth.forEach((month: any) => {
+        months.push(monthsMap[month.month]);
+        totalValuesByMonth.push(month.totalMonthValue);
+      });
+
+      options = {
+        ...options,
+        ...{
+          xAxis: { categories: months },
+          series: [
+            {
+              name: 'Valor Liquido Total',
+              type: 'column',
+              data: totalValuesByMonth,
+            },
+          ],
+        },
+      };
+
+      Highcharts.chart(this.chartContainer.nativeElement, options);
+    }
   }
 }
