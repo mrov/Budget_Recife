@@ -21,7 +21,6 @@ public class MyDbContext : DbContext
     {
         if (!(this.Budgets.Count() > 0))
         {
-            // Read the CSV file
             using var reader = new StreamReader(CsvPath);
             using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
             var records = csv.GetRecords<Budget>();

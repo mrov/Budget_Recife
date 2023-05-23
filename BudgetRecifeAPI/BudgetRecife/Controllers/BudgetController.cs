@@ -26,7 +26,6 @@ namespace BudgetRecife.Controllers
         [HttpGet("ByCategories")]
         public async Task<ActionResult<List<EconomicCategoryDTO>>> GetBudgetValuesByCategory()
         {
-            // Return a string as the response
             return Ok(await _budgetService.GetBudgetValuesByCategory());
         }
 
@@ -34,7 +33,6 @@ namespace BudgetRecife.Controllers
         [HttpGet("BySource")]
         public async Task<ActionResult<List<ResourceSourceDTO>>> ResourceBySource()
         {
-            // Return a string as the response
             return Ok(await _budgetService.GetBudgetValuesBySource());
         }
     }
