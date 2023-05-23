@@ -7,16 +7,25 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BudgetComponent } from './views/budget/budget.component';
 import { HttpClientModule } from '@angular/common/http';
 
+import {MatIconModule} from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import { MonthlyChartComponent } from './components/monthly-chart/monthly-chart.component';
+
 @NgModule({
   declarations: [
     AppComponent,
-    BudgetComponent
+    BudgetComponent,
+    MonthlyChartComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatIconModule,
+    MatButtonModule,
+    MatToolbarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

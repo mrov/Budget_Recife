@@ -1,26 +1,63 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { BudgetService } from './budget.service';
+import * as Highcharts from 'highcharts';
 
 @Component({
   selector: 'app-budget',
   templateUrl: './budget.component.html',
-  styleUrls: ['./budget.component.scss']
+  styleUrls: ['./budget.component.scss'],
 })
 export class BudgetComponent {
-  budgetByMonth = [];
+  @ViewChild('chartContainer') chartContainer!: ElementRef;
 
-  constructor (private budgetService: BudgetService) {}
+  budgetByMonth: [] = [];
+  budgetByCategory = [];
+  budgetBySource = [];
 
-  ngOnInit() {
-    this.getData();
+  constructor(private budgetService: BudgetService) {}
+
+  async ngOnInit() {
+    await this.getBudgetByMonths();
+    await this.getBudgetByCategories();
+    await this.getBudgetBySource();
   }
 
-  getData() {
+  getBudgetByMonths() {
     this.budgetService.getBudgetByMonths().subscribe(
       (response: any) => {
         // Handle the response data here
         this.budgetByMonth = response;
-        console.log(response);
+        console.log(this.budgetByMonth);
+      },
+      (error: any) => {
+        // Handle any errors
+        console.error(error);
+      }
+    );
+  }
+
+  getBudgetByCategories() {
+    this.budgetService.getBudgetByCategories().subscribe(
+      (response: any) => {
+        // Handle the response data here
+        this.budgetByCategory = response;
+        console.log(this.budgetByCategory);
+
+      },
+      (error: any) => {
+        // Handle any errors
+        console.error(error);
+      }
+    );
+  }
+
+  getBudgetBySource() {
+    this.budgetService.getBudgetBySource().subscribe(
+      (response: any) => {
+        // Handle the response data here
+        this.budgetBySource = response;
+        console.log(this.budgetBySource);
+
       },
       (error: any) => {
         // Handle any errors
