@@ -1,0 +1,46 @@
+<mat-toolbar color="primary">
+  <button
+    mat-icon-button
+    class="example-icon"
+    aria-label="Example icon-button with menu icon"
+  >
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>Recife Budget 2017 Charts</span>
+  <span class="example-spacer"></span>
+  <button
+    mat-icon-button
+    class="example-icon favorite-icon"
+    aria-label="Example icon-button with heart icon"
+  >
+    <mat-icon>favorite</mat-icon>
+  </button>
+  <button
+    mat-icon-button
+    class="example-icon"
+    aria-label="Example icon-button with share icon"
+  >
+    <mat-icon>share</mat-icon>
+  </button>
+</mat-toolbar>
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; padding: 0 2em 5em 2em;">
+  <mat-card style="margin-top: 3em; width: 46%">
+    <mat-card-content
+      ><app-monthly-chart [budgetByMonth]="budgetByMonth"></app-monthly-chart
+    ></mat-card-content>
+  </mat-card>
+
+  <mat-card style="margin-top: 3em; width: 46%">
+    <mat-card-content
+      ><app-categories-chart
+        [budgetByCategory]="budgetByCategory"
+      ></app-categories-chart
+    ></mat-card-content>
+  </mat-card>
+
+  <mat-card style="margin-top: 3em; width: 100%">
+    <mat-card-content
+      ><app-source-chart [budgetBySource]="budgetBySource"></app-source-chart
+    ></mat-card-content>
+  </mat-card>
+</div>
