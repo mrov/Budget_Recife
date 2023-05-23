@@ -6,7 +6,7 @@ namespace Services
     // Service interface
     public interface IBudgetService
     {
-        Task<List<MontlyValueDTO>> GetBudgetValuesByMonths();
+        Task<List<MonthlyValueDTO>> GetBudgetValuesByMonths();
         Task<List<EconomicCategoryDTO>> GetBudgetValuesByCategory();
         Task<List<ResourceSourceDTO>> GetBudgetValuesBySource();
     }
@@ -21,7 +21,7 @@ namespace Services
             _BudgetRepository = BudgetRepository;
         }
 
-        public async Task<List<MontlyValueDTO>> GetBudgetValuesByMonths()
+        public async Task<List<MonthlyValueDTO>> GetBudgetValuesByMonths()
         {
             return await _BudgetRepository.GetBudgetValuesByMonths();
         }

@@ -17,7 +17,7 @@ namespace BudgetRecife.Controllers
 
         // GET: Api/Budget/Monthly
         [HttpGet("Monthly")]
-        public async Task<ActionResult<List<MontlyValueDTO>>> GetBudgetValuesByMonths()
+        public async Task<ActionResult<List<MonthlyValueDTO>>> GetBudgetValuesByMonths()
         {
             return Ok(await _budgetService.GetBudgetValuesByMonths());
         }
