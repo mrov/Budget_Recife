@@ -6,7 +6,7 @@ namespace Repository
     // Repository interface
     public interface IBudgetRepository
     {
-        Task<List<MontlyValueDTO>> GetBudgetValuesByMonths();
+        Task<List<MonthlyValueDTO>> GetBudgetValuesByMonths();
         Task<List<EconomicCategoryDTO>> GetBudgetValuesByCategory();
         Task<List<ResourceSourceDTO>> GetBudgetValuesBySource();
     }
@@ -20,9 +20,9 @@ namespace Repository
         {
             _context = context;
         }
-        public async Task<List<MontlyValueDTO>> GetBudgetValuesByMonths()
+        public async Task<List<MonthlyValueDTO>> GetBudgetValuesByMonths()
         {
-            var result = await _context.Budgets.GroupBy(o => o.mes_movimentacao).Select(month => new MontlyValueDTO
+            var result = await _context.Budgets.GroupBy(o => o.mes_movimentacao).Select(month => new MonthlyValueDTO
             {
                 Month = month.Key,
                 TotalMonthValue = month.Sum(orc => (long)Convert.ToDouble(orc.valor_liquidado.Replace(",", ".")))
