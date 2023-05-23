@@ -7,13 +7,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BudgetComponent } from './views/budget/budget.component';
 import { HttpClientModule } from '@angular/common/http';
 
-import {MatIconModule} from '@angular/material/icon';
-import {MatButtonModule} from '@angular/material/button';
-import {MatToolbarModule} from '@angular/material/toolbar';
+// Material imports
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatCardModule } from '@angular/material/card';
+
+// Components
 import { MonthlyChartComponent } from './components/monthly-chart/monthly-chart.component';
 import { CategoriesChartComponent } from './components/categories-chart/categories-chart.component';
 import { SourceChartComponent } from './components/source-chart/source-chart.component';
-
 
 @NgModule({
   declarations: [
@@ -21,7 +24,7 @@ import { SourceChartComponent } from './components/source-chart/source-chart.com
     BudgetComponent,
     MonthlyChartComponent,
     CategoriesChartComponent,
-    SourceChartComponent
+    SourceChartComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,9 +33,10 @@ import { SourceChartComponent } from './components/source-chart/source-chart.com
     BrowserAnimationsModule,
     MatIconModule,
     MatButtonModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatCardModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
