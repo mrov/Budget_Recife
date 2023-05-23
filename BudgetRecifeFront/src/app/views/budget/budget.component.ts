@@ -11,8 +11,8 @@ export class BudgetComponent {
   @ViewChild('chartContainer') chartContainer!: ElementRef;
 
   budgetByMonth: [] = [];
-  budgetByCategory = [];
-  budgetBySource = [];
+  budgetByCategory: [] = [];
+  budgetBySource: [] = [];
 
   constructor(private budgetService: BudgetService) {}
 
