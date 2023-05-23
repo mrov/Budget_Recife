@@ -7,6 +7,7 @@ namespace Repository
     public interface IBudgetRepository
     {
         Task<List<MontlyValueDTO>> GetBudgetValuesByMonths();
+        Task<List<EconomicCategoryDTO>> GetBudgetValuesByCategory();
     }
 
     // Repository implementation
@@ -25,6 +26,18 @@ namespace Repository
                 Month = month.Key,
                 TotalMonthValue = month.Sum(orc => (long)Convert.ToDouble(orc.valor_liquidado.Replace(",", ".")))
             }).OrderBy(mon => mon.Month).ToListAsync();
+
+            return result;
+        }
+
+        public async Task<List<EconomicCategoryDTO>> GetBudgetValuesByCategory()
+        {
+            var result = await _context.Budgets.GroupBy(o => new { o.categoria_economica_codigo, o.categoria_economica_nome }).Select(category => new EconomicCategoryDTO
+            {
+                EconomicCategoryCode = category.Key.categoria_economica_codigo,
+                EconomicCategoryName = category.Key.categoria_economica_nome,
+                TotalCategoryValue = category.Sum(orc => (long)Convert.ToDouble(orc.valor_liquidado.Replace(",", ".")))
+            }).OrderBy(eco => eco.EconomicCategoryCode).ToListAsync();
 
             return result;
         }

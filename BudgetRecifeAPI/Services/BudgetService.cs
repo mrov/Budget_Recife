@@ -7,6 +7,7 @@ namespace Services
     public interface IBudgetService
     {
         Task<List<MontlyValueDTO>> GetBudgetValuesByMonths();
+        Task<List<EconomicCategoryDTO>> GetBudgetValuesByCategory();
     }
 
     // Service implementation
@@ -18,9 +19,15 @@ namespace Services
         {
             _BudgetRepository = BudgetRepository;
         }
+
         public async Task<List<MontlyValueDTO>> GetBudgetValuesByMonths()
         {
             return await _BudgetRepository.GetBudgetValuesByMonths();
+        }
+
+        public async Task<List<EconomicCategoryDTO>> GetBudgetValuesByCategory()
+        {
+            return await _BudgetRepository.GetBudgetValuesByCategory();
         }
 
     }
