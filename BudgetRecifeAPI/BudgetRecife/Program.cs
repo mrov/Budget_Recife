@@ -25,4 +25,28 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+seedDatabase();
+
 app.Run();
+
+void seedDatabase()
+{
+
+    using (var scope = app.Services.CreateScope())
+    {
+        var services = scope.ServiceProvider;
+
+        try
+        {
+            var dbContext = services.GetRequiredService<MyDbContext>();
+
+            string CsvPath = builder.Configuration["CSVPath"];
+
+            dbContext.SeedDatabase(CsvPath);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("An error occurred while accessing the DbContext: " + ex.Message);
+        }
+    }
+}

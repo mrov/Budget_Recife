@@ -1,5 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using CsvHelper;
+using Microsoft.EntityFrameworkCore;
 using Models;
+using System.Formats.Asn1;
+using System.Globalization;
 
 public class MyDbContext : DbContext
 {
@@ -9,10 +12,22 @@ public class MyDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        // Your entity configurations and other model definitions
         base.OnModelCreating(modelBuilder);
     }
 
     // DbSet properties representing your database tables
-    public DbSet<Budget> Orcamentos { get; set; }
+    public DbSet<Budget> Budgets { get; set; }
+
+    public void SeedDatabase(string CsvPath)
+    {
+        if (!(this.Budgets.Count() > 0))
+        {
+            // Read the CSV file
+            using var reader = new StreamReader(CsvPath);
+            using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
+            var records = csv.GetRecords<Budget>();
+
+            this.BulkInsert(records);
+        }
+    }
 }
