@@ -8,6 +8,7 @@ namespace Services
     {
         Task<List<MontlyValueDTO>> GetBudgetValuesByMonths();
         Task<List<EconomicCategoryDTO>> GetBudgetValuesByCategory();
+        Task<List<ResourceSourceDTO>> GetBudgetValuesBySource();
     }
 
     // Service implementation
@@ -30,5 +31,9 @@ namespace Services
             return await _BudgetRepository.GetBudgetValuesByCategory();
         }
 
+        public async Task<List<ResourceSourceDTO>> GetBudgetValuesBySource()
+        {
+            return await _BudgetRepository.GetBudgetValuesBySource();
+        }
     }
 }

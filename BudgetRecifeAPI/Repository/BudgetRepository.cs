@@ -8,6 +8,7 @@ namespace Repository
     {
         Task<List<MontlyValueDTO>> GetBudgetValuesByMonths();
         Task<List<EconomicCategoryDTO>> GetBudgetValuesByCategory();
+        Task<List<ResourceSourceDTO>> GetBudgetValuesBySource();
     }
 
     // Repository implementation
@@ -42,5 +43,16 @@ namespace Repository
             return result;
         }
 
+        public async Task<List<ResourceSourceDTO>> GetBudgetValuesBySource()
+        {
+            var result = await _context.Budgets.GroupBy(o => new { o.fonte_recurso_codigo, o.fonte_recurso_nome }).Select(resourceSource => new ResourceSourceDTO
+            {
+                ResourceSourceCode = resourceSource.Key.fonte_recurso_codigo,
+                ResourceSourceName = resourceSource.Key.fonte_recurso_nome,
+                TotalSourceValue = resourceSource.Sum(orc => (long)Convert.ToDouble(orc.valor_liquidado.Replace(",", ".")))
+            }).OrderBy(res => res.ResourceSourceCode).ToListAsync();
+
+            return result;
+        }
     }
 }
