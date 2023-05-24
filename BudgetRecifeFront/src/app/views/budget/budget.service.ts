@@ -3,12 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { EconomicCategoryDTO, MonthlyValueDTO, ResourceSourceDTO } from 'src/app/utils/interfaces/Budget';
 
+import { environment } from 'src/environment/environment';
+
 @Injectable({
   providedIn: 'root'
 })
 export class BudgetService {
 
-  public apiUrl = 'https://localhost:7254'; // Replace with your API URL
+  public apiUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) { }
 
