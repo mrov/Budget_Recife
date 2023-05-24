@@ -8,6 +8,7 @@ import {
 import * as Highcharts from 'highcharts';
 
 import { options } from '../../utils/constants/chart';
+import { EconomicCategoryDTO } from 'src/app/utils/interfaces/Budget';
 
 @Component({
   selector: 'app-categories-chart',
@@ -18,7 +19,7 @@ export class CategoriesChartComponent {
   @ViewChild('categoriesChartContainer') chartContainer!: ElementRef;
 
   @Input()
-  budgetByCategory: [] = [];
+  budgetByCategory: EconomicCategoryDTO[] = [];
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['budgetByCategory']) {

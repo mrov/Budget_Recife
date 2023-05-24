@@ -7,6 +7,7 @@ import {
 } from '@angular/core';
 import * as Highcharts from 'highcharts';
 import { options } from 'src/app/utils/constants/chart';
+import { MonthlyValueDTO } from 'src/app/utils/interfaces/Budget';
 
 const monthsMap: { [key: number]: string } = {
   1: 'Jan',
@@ -32,7 +33,7 @@ export class MonthlyChartComponent {
   @ViewChild('monthlyChartContainer') chartContainer!: ElementRef;
 
   @Input()
-  budgetByMonth: [] = [];
+  budgetByMonth: MonthlyValueDTO[] = [];
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['budgetByMonth']) {

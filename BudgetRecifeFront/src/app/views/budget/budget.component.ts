@@ -1,6 +1,6 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { BudgetService } from './budget.service';
-import * as Highcharts from 'highcharts';
+import { EconomicCategoryDTO, MonthlyValueDTO, ResourceSourceDTO } from 'src/app/utils/interfaces/Budget';
 
 @Component({
   selector: 'app-budget',
@@ -10,9 +10,9 @@ import * as Highcharts from 'highcharts';
 export class BudgetComponent {
   @ViewChild('chartContainer') chartContainer!: ElementRef;
 
-  budgetByMonth: [] = [];
-  budgetByCategory: [] = [];
-  budgetBySource: [] = [];
+  budgetByMonth: MonthlyValueDTO[] = [];
+  budgetByCategory: EconomicCategoryDTO[] = [];
+  budgetBySource: ResourceSourceDTO[] = [];
 
   constructor(private budgetService: BudgetService) {}
 
@@ -24,7 +24,7 @@ export class BudgetComponent {
 
   getBudgetByMonths() {
     this.budgetService.getBudgetByMonths().subscribe(
-      (response: any) => {
+      (response: MonthlyValueDTO[]) => {
         // Handle the response data here
         this.budgetByMonth = response;
       },
@@ -37,7 +37,7 @@ export class BudgetComponent {
 
   getBudgetByCategories() {
     this.budgetService.getBudgetByCategories().subscribe(
-      (response: any) => {
+      (response: EconomicCategoryDTO[]) => {
         // Handle the response data here
         this.budgetByCategory = response;
       },
@@ -50,7 +50,7 @@ export class BudgetComponent {
 
   getBudgetBySource() {
     this.budgetService.getBudgetBySource().subscribe(
-      (response: any) => {
+      (response: ResourceSourceDTO[]) => {
         // Handle the response data here
         this.budgetBySource = response;
       },
