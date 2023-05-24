@@ -32,13 +32,21 @@ If you need help setting a Oracle data base, here is what i've made to set it lo
 
 1 - Clone the project into your computer
 
-2 - Download the CSV into the link at the beginning of this documentation
+2 - (Optional step, you can disable the DB seed into the appsettings.json file) Download the CSV into the link at the beginning of this documentation
 
-3 - Set the full patch into the appsettings.json file to this csv
+3 - (Optional step, you can disable the DB seed into the appsettings.json file) Set the full patch into the appsettings.json file to this CSV 
 
-4 - Run the application with a Oracle Database running (Set the connection string into the appsettings.json too)
+4 - Be sure to have a Oracle Database running with the connection string set (Set the connection string into the appsettings.json)
 
-5 - Open the solution inside BudgetRecife of the back-end into the visual studio and run, it should show to you the Swagger documentation of the routes
+5 - Install the entity core tool "dotnet tool install --global dotnet-ef --version 7.0.5"
+
+6 - Apply the migrations using "dotnet ef database update --startup-project BudgetRecife --project ./Repository"
+
+7 - Build the project with "dotnet build"
+
+8 - Run the project "dotnet run --project BudgetRecife"
+
+9 - It should show to you the Swagger documentation of the routes into https://localhost:7254/swagger
 
 ## Front-end
 
