@@ -54,4 +54,6 @@ If you need help setting a Oracle data base, here is what i've made to set it lo
 
 2 - run npm install command to install dependencies
 
-3 - run npm dev to run locally the project, by default it will run in http://localhost:4200/
+3 - Set the API URL into the /src/environment/environment.ts file
+
+4 - run npm dev to run locally the project, by default it will run in http://localhost:4200/
