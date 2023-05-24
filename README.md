@@ -16,6 +16,18 @@ And had the objective of show this data in some ways
 
 # How to run
 
+## Database
+
+If you need help setting a Oracle data base, here is what i've made to set it locally without installing a lot of things
+
+- Install docker in your machine, im using windows so i've installed the docker desktop and configured it
+
+- Use this commando to pull the Oracle Free Image: docker pull container-registry.oracle.com/database/free:latest
+- - This command can take a while the Oracle Free Image is huge almost 3GB
+
+- Then you can run your oracle container using this command: docker run --name oracledb -p 1521:1521 -e ORACLE_PWD=password
+- - You can change the variables values like the name and the ORACLE_PWD for what you want, and the host port too
+
 ## Back-End
 
 1 - Clone the project into your computer
