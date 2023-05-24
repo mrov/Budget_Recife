@@ -7,6 +7,7 @@ import {
 } from '@angular/core';
 import * as Highcharts from 'highcharts';
 import { options } from 'src/app/utils/constants/chart';
+import { ResourceSourceDTO } from 'src/app/utils/interfaces/Budget';
 
 @Component({
   selector: 'app-source-chart',
@@ -17,7 +18,7 @@ export class SourceChartComponent {
   @ViewChild('sourceChartContainer') chartContainer!: ElementRef;
 
   @Input()
-  budgetBySource: [] = [];
+  budgetBySource: ResourceSourceDTO[] = [];
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['budgetBySource']) {

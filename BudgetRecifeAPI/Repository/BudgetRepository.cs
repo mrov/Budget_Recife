@@ -50,7 +50,7 @@ namespace Repository
                 ResourceSourceCode = resourceSource.Key.fonte_recurso_codigo,
                 ResourceSourceName = resourceSource.Key.fonte_recurso_nome,
                 TotalSourceValue = resourceSource.Sum(orc => (long)Convert.ToDouble(orc.valor_liquidado.Replace(",", ".")))
-            }).OrderBy(res => res.ResourceSourceCode).ToListAsync();
+            }).OrderByDescending(res => res.TotalSourceValue).ToListAsync();
 
             return result;
         }

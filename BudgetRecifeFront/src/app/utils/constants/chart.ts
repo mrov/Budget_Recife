@@ -11,7 +11,7 @@ const options: Highcharts.Options = {
     },
     style: {
       fontFamily: 'Helvetica, Arial, sans-serif',
-      fontWeight: "100"
+      fontWeight: '100',
     },
   },
   subtitle: {
@@ -25,9 +25,15 @@ const options: Highcharts.Options = {
   },
   tooltip: {
     headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-    pointFormat:
-      '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-      '<td style="padding:0"><b>{point.y:.2f}</b></td></tr>',
+    pointFormatter: function () {
+      return `<tr><td style="color:${this.series.color};padding:0">${
+        this.series.name
+      }: </td>
+      <td style="padding:0"><b>${this.y?.toLocaleString('pt-BR', {
+        style: 'currency',
+        currency: 'BRL',
+      })}</b></td></tr>`;
+    },
     footerFormat: '</table>',
     shared: true,
     useHTML: true,

@@ -1,4 +1,5 @@
 var builder = WebApplication.CreateBuilder(args);
+var IsSeedEnabled = builder.Configuration["SeedDatabase:Enabled"];
 
 builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
 
@@ -39,7 +40,11 @@ app.MapControllers();
 
 app.UseCors("AllowAll");
 
-seedDatabase();
+if (!String.IsNullOrEmpty(IsSeedEnabled) && IsSeedEnabled.Equals("true", StringComparison.OrdinalIgnoreCase))
+{
+    seedDatabase();
+}
+
 
 app.Run();
 
@@ -54,7 +59,7 @@ void seedDatabase()
         {
             var dbContext = services.GetRequiredService<MyDbContext>();
 
-            string CsvPath = builder.Configuration["CSVPath"];
+            string CsvPath = builder.Configuration["SeedDatabase:CSVPath"];
 
             dbContext.SeedDatabase(CsvPath);
         }

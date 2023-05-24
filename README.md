@@ -6,11 +6,13 @@ Its a project for a job opportunity where i can have to get the data from http:/
 
 And had the objective of show this data in some ways
 
-# Attention
+# Attention!!!
 
-### The first run of the back-end it will try to seed your database with the data, to configure this seed do the following:
+#### If you want to seed the dabatase follow the step, if dont disable it into the "appsettings.json"!!!
 
-#### - You have to download this data as CSV and set into the "appsettings.json" file of the back-end the fullpatch to this file
+#### The first run of the back-end it will try to seed your database with the data, to configure this seed do the following:
+
+##### - You have to download the data in the link above as CSV and set into the "appsettings.json" file of the back-end the fullpatch to this file
 
 # How to run
 
